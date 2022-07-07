@@ -1107,6 +1107,9 @@ select {
 .z-50 {
   z-index: 50;
 }
+.order-last {
+  order: 9999;
+}
 .col-span-6 {
   grid-column: span 6 / span 6;
 }
@@ -1120,6 +1123,10 @@ select {
 .mx-6 {
   margin-left: 1.5rem;
   margin-right: 1.5rem;
+}
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 .ml-3 {
   margin-left: 0.75rem;
@@ -1195,6 +1202,9 @@ select {
 }
 .-mt-px {
   margin-top: -1px;
+}
+.mb-2 {
+  margin-bottom: 0.5rem;
 }
 .block {
   display: block;
@@ -1697,6 +1707,18 @@ select {
 }
 .pt-8 {
   padding-top: 2rem;
+}
+.pr-5 {
+  padding-right: 1.25rem;
+}
+.pr-3 {
+  padding-right: 0.75rem;
+}
+.pr-2 {
+  padding-right: 0.5rem;
+}
+.pr-1 {
+  padding-right: 0.25rem;
 }
 .text-left {
   text-align: left;
@@ -2327,6 +2349,10 @@ select {
 }
 @media (min-width: 768px) {
 
+  .md\:order-first {
+    order: -9999;
+  }
+
   .md\:col-span-2 {
     grid-column: span 2 / span 2;
   }
@@ -2337,6 +2363,10 @@ select {
 
   .md\:mt-0 {
     margin-top: 0px;
+  }
+
+  .md\:block {
+    display: block;
   }
 
   .md\:grid {
@@ -2351,6 +2381,10 @@ select {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .md\:justify-start {
+    justify-content: flex-start;
+  }
+
   .md\:gap-6 {
     gap: 1.5rem;
   }
@@ -2361,6 +2395,11 @@ select {
 
   .md\:border-l {
     border-left-width: 1px;
+  }
+
+  .md\:px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
 @media (min-width: 1024px) {
