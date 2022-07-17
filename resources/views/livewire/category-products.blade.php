@@ -17,7 +17,7 @@
 									</a>
 								</h1>
 								<p class="font-bold text-neutral-500">
-									U$S {{ $product->status }}
+									U$S {{ $product->price }}
 								</p>
 							</div>
 						</article>
