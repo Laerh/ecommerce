@@ -1,5 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import 'container.css';
-@import 'nav.css';
+@import "container.css";
+@import "nav.css";
+@import "form.css";

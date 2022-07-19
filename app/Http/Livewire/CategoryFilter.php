@@ -13,7 +13,7 @@ class CategoryFilter extends Component
 
     public $category, $subcategoryTitle, $brandTitle;
 
-    public $view = "list";
+    public $view = "grid";
 
     public function clean()
     {
