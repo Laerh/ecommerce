@@ -1,4 +1,4 @@
-<header x-data="dropdown()" class="bg-neutral-700 sticky top-0 z-50">
+<header x-data="dropdown()" class="bg-neutral-700 sticky top-0" style="z-index: 999">
 	{{-- Barra de navegacion --}}
 	<div class="container flex items-center h-16 justify-between md:justify-start">
 		<a :class="{ 'bg-opacity-100 text-orange-500': open }" x-on:click="show()"
