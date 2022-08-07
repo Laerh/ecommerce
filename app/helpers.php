@@ -36,3 +36,47 @@ function quantityAvailable($product_id, $color_id = null, $size_id = null)
 {
    return quantity($product_id, $color_id, $size_id) - quantityItemsAddedToCart($product_id, $color_id, $size_id);
 }
+
+function discount($item)
+{
+   $product = Product::find($item->id);
+   $quantityAvailable = quantityAvailable($item->id, $item->options->color_id, $item->options->size_id);
+
+   if ($item->options->size_id) {
+      $size = Size::find($item->options->size_id);
+      $size->colors()->detach($item->options->color_id);
+      $size->colors()->attach([
+         $item->options->color_id => ['quantity' => $quantityAvailable]
+      ]);
+   } else if ($item->options->color_id) {
+      $product->colors()->detach($item->options->color_id);
+      $product->colors()->attach([
+         $item->options->color_id => ['quantity' => $quantityAvailable]
+      ]);
+   } else {
+      $product->quantity = $quantityAvailable;
+      $product->save();
+   }
+}
+
+function increase($item)
+{
+   $product = Product::find($item->id);
+   $quantity = quantity($item->id, $item->options->color_id, $item->options->size_id) + $item->qty;
+
+   if ($item->options->size_id) {
+      $size = Size::find($item->options->size_id);
+      $size->colors()->detach($item->options->color_id);
+      $size->colors()->attach([
+         $item->options->color_id => ['quantity' => $quantity]
+      ]);
+   } else if ($item->options->color_id) {
+      $product->colors()->detach($item->options->color_id);
+      $product->colors()->attach([
+         $item->options->color_id => ['quantity' => $quantity]
+      ]);
+   } else {
+      $product->quantity = $quantity;
+      $product->save();
+   }
+}

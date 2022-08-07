@@ -10,6 +10,7 @@ use App\Http\Livewire\ShoppingCart;
 use App\Http\Livewire\CreateOrder;
 use App\Http\Controllers\WebHooksController;
 use App\Http\Livewire\PaymentOrder;
+use App\Models\Order;
 
 Route::get('/', WelcomeController::class);
 
@@ -21,12 +22,17 @@ Route::get('/products/{product}', [ProductController::class, 'show'])->name('pro
 
 Route::get('/shopping-cart', ShoppingCart::class)->name('shopping-cart');
 
-Route::get('/orders/create', CreateOrder::class)->middleware('auth')->name('orders.create');
+Route::middleware(['auth'])->group(function () {
 
-Route::get('/orders/{order}', [OrderController::class, 'show'])->middleware('auth')->name('orders.show');
+   Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
 
-Route::get('/orders/{order}/payment/', PaymentOrder::class)->middleware('auth')->name('orders.payment');
+   Route::get('/orders/create', CreateOrder::class)->name('orders.create');
 
-Route::post('/webhooks', WebHooksController::class)->name('webhooks');
+   Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show');
 
-Route::get('/orders/{order}/pay/', [OrderController::class, 'pay'])->middleware('auth')->name('orders.pay');
+   Route::get('/orders/{order}/payment/', PaymentOrder::class)->name('orders.payment');
+
+   Route::post('/webhooks', WebHooksController::class)->name('webhooks');
+
+   Route::get('/orders/{order}/pay/', [OrderController::class, 'pay'])->name('orders.pay');
+});
